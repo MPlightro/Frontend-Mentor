@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Frontend Mentor Projects Gateway</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    header {
+      background: #2d3748;
+      color: #fff;
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    ul.project-list {
+      list-style: none;
+      padding: 0;
+      margin: 2rem 0;
+      max-width: 400px;
+      width: 100%;
+    }
+    ul.project-list li {
+      background: #fff;
+      margin-bottom: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      transition: box-shadow 0.2s;
+    }
+    ul.project-list li:hover {
+      box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+    }
+    ul.project-list a {
+      display: block;
+      padding: 1.25rem 1.5rem;
+      color: #2d3748;
+      text-decoration: none;
+      font-size: 1.1rem;
+      font-weight: 500;
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: #e2e8f0;
+      color: #4a5568;
+      font-size: 0.95rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Frontend Mentor Projects</h1>
+    <p>Welcome! Choose a project to view:</p>
+  </header>
+  <main>
+    <ul class="project-list" id="project-list">
+      <!-- Project links will be populated by JS -->
+    </ul>
+  </main>
+  <footer>
+    &copy; Mostafa Ismail
+  </footer>
+  <script>
+    // This script expects a projects.json file in the same directory
+    // Format: [{ "folder": "project1", "name": "Project Name" }, ...]
+    fetch('projects.json')
+      .then(response => response.json())
+      .then(projects => {
+        const list = document.getElementById('project-list');
+        list.innerHTML = '';
+        projects.forEach(proj => {
+          const li = document.createElement('li');
+          const a = document.createElement('a');
+          a.href = `${proj.folder}`;
+          a.textContent = `${proj.name}`;
+          li.appendChild(a);
+          list.appendChild(li);
+        });
+      })
+      .catch(() => {
+        // fallback if projects.json is missing
+        document.getElementById('project-list').innerHTML = `
+          <li>No projects found. Please add a projects.json file.</li>
+        `;
+      });
+  </script>
+</body>
+</html>
