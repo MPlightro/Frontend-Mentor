@@ -17,10 +17,9 @@ body {
   border-radius: 2rem;
   background: #fff;
   box-shadow: 0 8px 32px 0 rgba(61, 108, 236, 0.10);
-  margin: 0;
-  width: 300px;
-  height: 392.57px;
-  padding: 40px 32px 32px 32px;
+  margin: -58px 0 0 0; /* negative margin */
+  height: 294px;
+  padding: 20px 16px 16px 16px; /* reduced padding */
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -30,92 +29,109 @@ body {
   background: linear-gradient(180deg, hsl(252, 100%, 67%), hsl(241, 81%, 54%));
   color: #fff;
   align-items: center;
+  width: 266px;
+  /* Move result-container 1/2 of its width to the right */
+  transform: translate(52px, 0);
+  position: fixed;
+  top: 0;
+  left: 0;
+  /* Optionally set right/bottom if you want full width/height, or keep width/height as before */
+  z-index: 999999999 !important; /* Use !important and a very high value */
 }
 
 .result-container h1 {
-  font-size: 1.25rem;
+  font-size: 1rem; /* reduced font size */
   font-weight: 700;
   opacity: 0.85;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem; /* reduced margin */
 }
 
 .result-score-circle {
   background: linear-gradient(180deg, hsla(256, 72%, 46%, 1), hsla(241, 72%, 46%, 0));
   border-radius: 50%;
-  width: 140px;
-  height: 140px;
+  width: 90px;   /* reduced size */
+  height: 90px;  /* reduced size */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem; /* reduced margin */
 }
 
 .result-score-circle .score {
-  font-size: 3.5rem;
+  font-size: 2rem; /* reduced font size */
   font-weight: 800;
   margin: 0;
 }
 
 .result-score-circle .of {
-  font-size: 1rem;
+  font-size: 0.75rem; /* reduced font size */
   opacity: 0.7;
-  margin-top: -0.5rem;
+  margin-top: -0.3rem;
 }
 
 .result-container h2 {
-  font-size: 1.5rem;
+  font-size: 1.1rem; /* reduced font size */
   font-weight: 700;
-  margin: 1rem 0 0.5rem 0;
+  margin: 0.7rem 0 0.3rem 0; /* reduced margin */
 }
 
 .result-container p {
-  font-size: 1rem;
+  font-size: 0.85rem; /* reduced font size */
   text-align: center;
   opacity: 0.8;
-  margin: 0.5rem 0 0 0;
-  max-width: 220px;
+  margin: 0.3rem 0 0 0; /* reduced margin */
+  max-width: 180px; /* reduced max width */
 }
 
 /* Summary panel */
 .summary-container {
   background: #fff;
+  width: 400px;
+  z-index: 1;
+  padding-left: 66px;
+  padding-right: 0;
+  transform: translate(-50px, 0);
 }
 
 .summary-container h1 {
-  font-size: 0.94rem; /* 1.25rem * 0.75 */
+  font-size: 0.75rem; /* reduced font size */
   font-weight: 700;
   color: hsl(224, 30%, 27%);
-  margin-bottom: 1.125rem; /* 1.5rem * 0.75 */
+  margin-bottom: 0.7rem; /* reduced margin */
+  margin-left: 60px;
+
 }
 
 .summary-item {
+  margin-left: 60px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-radius: 0.56rem; /* 0.75rem * 0.75 */
-  padding: 0.75rem;      /* 1rem * 0.75 */
-  margin-bottom: 0.75rem;/* 1rem * 0.75 */
-  font-size: 0.75rem;    /* 1rem * 0.75 */
+  border-radius: 0.42rem; /* reduced */
+  padding: 0.5rem;      /* reduced */
+  margin-bottom: 0.5rem;/* reduced */
+  font-size: 0.65rem;   /* reduced */
   font-weight: 700;
+  width: 63%;
 }
 
 .summary-item .label {
   display: flex;
   align-items: center;
-  gap: 0.56rem; /* 0.75rem * 0.75 */
+  gap: 0.35rem; /* reduced */
 }
 
 .summary-item .score {
   color: hsl(224, 30%, 27%);
   font-weight: 700;
-  font-size: 0.75rem; /* 1rem * 0.75, if you want to scale the score number too */
+  font-size: 0.65rem; /* reduced */
 }
 
 .summary-item .total {
   color: #aaa;
   font-weight: 700;
-  margin-left: 0.19rem; /* 0.25rem * 0.75 */
+  margin-left: 0.12rem; /* reduced */
 }
 
 /* Category backgrounds and colors */
@@ -138,23 +154,46 @@ body {
 
 /* Continue button */
 .continue-btn {
-  width: 100%;
-  margin-top: 0.75rem;    /* 1rem * 0.75 */
-  padding: 0.75rem 0;     /* 1rem * 0.75 */
+  width: 68%;
+  margin-top: 0.5rem;    /* reduced */
+  padding: 0.5rem 0;     /* reduced */
   background: hsl(224, 30%, 27%);
   color: #fff;
   border: none;
   border-radius: 2rem;
-  font-size: 0.825rem;    /* 1.1rem * 0.75 */
+  font-size: 0.7rem;    /* reduced */
   font-weight: 700;
   cursor: pointer;
   transition: background 0.2s;
+  margin-left: 60px;
+
 }
 
 .continue-btn:hover,
 .continue-btn:focus {
   background: linear-gradient(90deg, hsl(252, 100%, 67%), hsl(241, 81%, 54%));
   outline: none;
+}
+
+/* Main wrapper for flex layout */
+.main-wrapper {
+  display: flex;
+  gap: 0;
+  justify-content: center;
+  align-items: center;
+  width: 400px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+  background: hsl(221, 100%, 96%);
+  border-radius: 2rem;
+}
+
+/* Make sure containers are above the background */
+.result-container,
+.summary-container {
+  position: relative;
+  z-index: 1;
 }
 
 /* Responsive */
@@ -165,12 +204,18 @@ body {
     align-items: stretch;
     min-height: 100vh;
   }
+  .main-wrapper {
+    flex-direction: column;
+    width: 100% !important;
+    gap: 0;
+  }
   .result-container, .summary-container {
-    width: 100%;
+    width: 100% !important;
     height: auto;
     border-radius: 0 0 2rem 2rem;
-    margin: 0;
+    margin: 0 !important;
     box-shadow: none;
-    padding: 32px 16px;
+    padding: 16px 8px; /* reduced for mobile */
+    transform: none !important;
   }
 }

@@ -1,7 +1,11 @@
+// Set this multiplier to scale the UI (e.g., 1 = normal, 1.2 = 20% bigger, 0.8 = 20% smaller)
+const scaleMultiplier = 1.3; // <-- EDIT THIS VALUE TO SCALE EVERYTHING
+
 document.addEventListener('DOMContentLoaded', async () => {
   const summaryList = document.getElementById('summary-list');
   const totalScoreElem = document.getElementById('total-score');
   const percentileTextElem = document.getElementById('percentile-text');
+  const wrapper = document.querySelector('.main-wrapper');
 
   try {
     const res = await fetch('data.json');
@@ -39,6 +43,18 @@ document.addEventListener('DOMContentLoaded', async () => {
         </span>
       </div>
     `).join('');
+
+    // Apply scaling to the wrapper ONLY
+    if (wrapper) {
+      wrapper.style.transform = `scale(${scaleMultiplier})`;
+      wrapper.style.transformOrigin = 'top center';
+      wrapper.style.width = `${400 * scaleMultiplier}px`;
+      wrapper.style.display = 'flex';
+      wrapper.style.gap = '0px';
+      wrapper.style.justifyContent = 'center';
+      wrapper.style.alignItems = 'center';
+      wrapper.style.margin = '0 auto';
+    }
   } catch (e) {
     summaryList.innerHTML = '<p style="color:red;">Failed to load summary data.</p>';
     if (percentileTextElem) {

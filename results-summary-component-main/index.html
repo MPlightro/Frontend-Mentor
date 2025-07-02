@@ -8,23 +8,26 @@
   <link rel="stylesheet" href="styles.css">
   <script src="script.js" defer></script>
   <title>Frontend Mentor | Results summary component</title>
+  <link rel="preconnect" href="https://fonts.google.com/specimen/Hanken+Grotesk">
 </head>
 <body>
-  <div class="result-container">
-    <h1>Your Result</h1>
-    <div class="result-score-circle">
-      <span class="score" id="total-score"></span>
-      <span class="of">of 100</span>
+  <div class="main-wrapper">
+    <div class="result-container">
+      <h1>Your Result</h1>
+      <div class="result-score-circle">
+        <span class="score" id="total-score"></span>
+        <span class="of">of 100</span>
+      </div>
+      <h2>Great</h2>
+      <p id="percentile-text"></p>
     </div>
-    <h2>Great</h2>
-    <p id="percentile-text"></p>
-  </div>
-  <div class="summary-container">
-    <h1>Summary</h1>
-    <div id="summary-list">
-      <!-- Summary items will be injected here -->
+    <div class="summary-container">
+      <h1>Summary</h1>
+      <div id="summary-list">
+        <!-- Summary items will be injected here -->
+      </div>
+      <button class="continue-btn">Continue</button>
     </div>
-    <button class="continue-btn">Continue</button>
   </div>
 </body>
 </html>

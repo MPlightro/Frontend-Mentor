@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Compare: Live vs. Design (Slider)</title>
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      overflow: hidden;
+    }
+    body {
+      width: 100vw;
+      height: 100vh;
+      background: #f5f7ff;
+    }
+    .slider-compare-container {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      width: 100vw;
+      height: 100vh;
+      margin: 0;
+      border-radius: 0;
+      box-shadow: none;
+      background: #fff;
+      overflow: hidden;
+      user-select: none;
+      touch-action: none;
+    }
+    .slider-compare-label,
+    .slider-compare-label.right {
+      display: none;
+    }
+    .slider-compare-img,
+    .slider-compare-iframe {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      border: none;
+      object-fit: contain;
+      background: #fff;
+      z-index: 1;
+    }
+    .slider-compare-iframe {
+      z-index: 2;
+      width: 50%;
+      transition: width 0.1s;
+      pointer-events: auto;
+    }
+    .slider-compare-handle {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 10;
+      cursor: ew-resize;
+      user-select: none;
+      background: transparent;
+      pointer-events: none;
+    }
+    .slider-compare-handle-bar {
+      position: absolute;
+      left: -2.5px;
+      top: 0;
+      width: 5px;
+      height: 100%;
+      background: #3d6cec;
+      border-radius: 0;
+      border: none;
+      box-sizing: border-box;
+      display: block;
+    }
+    #mouseLine {
+      position: fixed;
+      top: 0;
+      left: 50vw;
+      width: 5px;
+      height: 100vh;
+      background: #3d6cec;
+      z-index: 20;
+      pointer-events: none;
+      transition: left 0.05s;
+    }
+  </style>
+</head>
+<body>
+  <div class="slider-compare-container" id="sliderCompare">
+    <div class="slider-compare-iframe-clip" id="sliderClip" style="width:50%; height:100%; position:absolute; top:0; left:0; overflow:hidden; z-index:2; pointer-events:none;">
+      <iframe class="slider-compare-iframe" id="sliderIframe" src="../results-summary-component-main/index.html" title="Live Website" style="width:100vw; height:100vh; min-width:100vw; min-height:100vh; max-width:none; max-height:none; pointer-events:auto; position:absolute; top:0; left:0;"></iframe>
+    </div>
+    <img class="slider-compare-img" src="../results-summary-component-main/preview.jpg" alt="Design Preview">
+    <div class="slider-compare-handle" id="sliderHandle" style="left:0; width:100vw; height:100vh; background:transparent; pointer-events:none;">
+      <!-- Invisible handle covering the whole screen -->
+    </div>
+    <div id="mouseLine" style="position:fixed;top:0;left:50vw;width:5px;height:100vh;background:#3d6cec;z-index:20;pointer-events:none;transition:left 0.05s;"></div>
+  </div>
+  <script>
+    // Slider logic
+    const container = document.getElementById('sliderCompare');
+    const handle = document.getElementById('sliderHandle');
+    const sliderClip = document.getElementById('sliderClip');
+    const iframe = document.getElementById('sliderIframe');
+
+    function setSlider(x) {
+      const rect = container.getBoundingClientRect();
+      // Clamp x to be within the container bounds
+      x = Math.max(rect.left, Math.min(rect.right, x));
+      let percent = (x - rect.left) / rect.width;
+      percent = Math.max(0, Math.min(1, percent));
+      const percentStr = (percent * 100) + '%';
+      sliderClip.style.width = percentStr;
+      // handle.style.left = percentStr; // No need to move invisible handle
+    }
+
+    // Move the visible mouse line and update the slider
+    const mouseLine = document.getElementById('mouseLine');
+    window.addEventListener('mousemove', function(e) {
+      setSlider(e.clientX);
+      mouseLine.style.left = (e.clientX - 2.5) + 'px';
+    });
+
+    window.addEventListener('touchmove', function(e) {
+      setSlider(e.touches[0].clientX);
+      mouseLine.style.left = (e.touches[0].clientX - 2.5) + 'px';
+    });
+
+    // Click anywhere to move handle instantly
+    container.addEventListener('mousedown', function(e) {
+      if (e.target === handle || handle.contains(e.target)) return;
+      setSlider(e.clientX);
+    });
+    container.addEventListener('touchstart', function(e) {
+      if (e.target === handle || handle.contains(e.target)) return;
+      setSlider(e.touches[0].clientX);
+    });
+
+    // Responsive: reset on resize
+    window.addEventListener('resize', function() {
+      handle.style.left = sliderClip.style.width || '50%';
+    });
+
+    // Prevent pointer events on the clip so the slider always works, but allow interaction with the handle
+    sliderClip.style.pointerEvents = 'none';
+    handle.style.pointerEvents = 'auto';
+  </script>
+</body>
+</html>
