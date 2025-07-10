@@ -1,33 +1,51 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
 
-  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
-  <link rel="stylesheet" href="styles.css">
-  <script src="script.js" defer></script>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="normalize.css">
+  <link rel="stylesheet" href="styles.css" />
+  <script defer src="script.js"></script>
+
   <title>Frontend Mentor | Results summary component</title>
-  <link rel="preconnect" href="https://fonts.google.com/specimen/Hanken+Grotesk">
 </head>
+
 <body>
-  <div class="main-wrapper">
-    <div class="result-container">
-      <h1>Your Result</h1>
-      <div class="result-score-circle">
-        <span class="score" id="total-score"></span>
-        <span class="of">of 100</span>
+  <main class="container">
+    <div class="score-card">
+      <h1 class="score-card__title">Your Result</h1>
+      <div class="score-card__circle">
+        <p class="score-card__circle__score" id="total-score">76</p>
+        <p class="score-card__circle__of">of 100</p>
       </div>
-      <h2>Great</h2>
-      <p id="percentile-text"></p>
-    </div>
-    <div class="summary-container">
-      <h1>Summary</h1>
-      <div id="summary-list">
-        <!-- Summary items will be injected here -->
+
+      <div class="score-card__details">
+        <h2 class="score-card__details__great">Great</h2>
+        <p class="score-card__details__info" id="percentile-text">
+          You scored higher than 65% of the people who have taken
+          these tests.
+        </p>
       </div>
-      <button class="continue-btn">Continue</button>
     </div>
-  </div>
+
+    <div class="score-summary">
+      <h2 class="score-summary__title">Summary</h2>
+
+      <div class="score-summary__results" id="summary-list">
+      </div>
+
+      <button class="score-summary__button" type="button">
+        Continue
+      </button>
+    </div>
+  </main>
 </body>
+
 </html>
