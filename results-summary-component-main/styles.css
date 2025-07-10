@@ -192,7 +192,6 @@ body {
   position: relative;
   z-index: 1;
   border-radius: 2rem;
-  box-shadow: 0 8px 32px 0 rgba(61, 108, 236, 0.10);
   /* Add shadow to wrapper for desktop card effect */
 }
 
