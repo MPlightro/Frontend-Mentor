@@ -5,21 +5,22 @@ body {
   padding: 0;
   box-sizing: border-box;
   font-family: 'Hanken Grotesk', Arial, sans-serif;
-  background: hsl(221, 100%, 96%);
+  background: #e0e7ff;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-/* Main card container */
-.result-container, .summary-container {
+/* Main card container - Desktop defaults */
+.result-container,
+.summary-container {
   box-sizing: border-box;
   border-radius: 2rem;
   background: #fff;
   box-shadow: 0 8px 32px 0 rgba(61, 108, 236, 0.10);
-  margin: -58px 0 0 0; /* negative margin */
   height: 294px;
-  padding: 20px 16px 16px 16px; /* reduced padding */
+  /* Default height for desktop */
+  padding: 20px 16px 16px 16px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -30,77 +31,79 @@ body {
   color: #fff;
   align-items: center;
   width: 266px;
-  /* Move result-container 1/2 of its width to the right */
+  /* Desktop positioning via transform */
   transform: translate(52px, 0);
-  position: fixed;
-  top: 0;
-  left: 0;
-  /* Optionally set right/bottom if you want full width/height, or keep width/height as before */
-  z-index: 999999999 !important; /* Use !important and a very high value */
+  position: relative;
+  /* Ensure relative positioning for desktop */
+  z-index: 1;
+  /* Bring result container forward for desktop overlap */
 }
 
 .result-container h1 {
-  font-size: 1rem; /* reduced font size */
+  font-size: 1rem;
   font-weight: 700;
   opacity: 0.85;
-  margin-bottom: 1rem; /* reduced margin */
+  margin-bottom: 1rem;
 }
 
 .result-score-circle {
   background: linear-gradient(180deg, hsla(256, 72%, 46%, 1), hsla(241, 72%, 46%, 0));
   border-radius: 50%;
-  width: 90px;   /* reduced size */
-  height: 90px;  /* reduced size */
+  width: 90px;
+  height: 90px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-bottom: 1rem; /* reduced margin */
+  margin-bottom: 1rem;
 }
 
 .result-score-circle .score {
-  font-size: 2rem; /* reduced font size */
+  font-size: 2rem;
   font-weight: 800;
   margin: 0;
 }
 
 .result-score-circle .of {
-  font-size: 0.75rem; /* reduced font size */
+  font-size: 0.75rem;
   opacity: 0.7;
   margin-top: -0.3rem;
 }
 
 .result-container h2 {
-  font-size: 1.1rem; /* reduced font size */
+  font-size: 1.1rem;
   font-weight: 700;
-  margin: 0.7rem 0 0.3rem 0; /* reduced margin */
+  margin: 0.7rem 0 0.3rem 0;
 }
 
 .result-container p {
-  font-size: 0.85rem; /* reduced font size */
+  font-size: 0.85rem;
   text-align: center;
   opacity: 0.8;
-  margin: 0.3rem 0 0 0; /* reduced margin */
-  max-width: 180px; /* reduced max width */
+  margin: 0.3rem 0 0 0;
+  max-width: 180px;
 }
 
-/* Summary panel */
+/* Summary panel - Desktop defaults */
 .summary-container {
   background: #fff;
   width: 400px;
-  z-index: 1;
+  z-index: 0;
+  /* Summary container behind result container for desktop overlap */
   padding-left: 66px;
   padding-right: 0;
+  /* Desktop positioning via transform */
   transform: translate(-50px, 0);
+  position: relative;
+  /* Ensure relative positioning for desktop */
 }
 
 .summary-container h1 {
-  font-size: 0.75rem; /* reduced font size */
+  font-size: 0.75rem;
   font-weight: 700;
   color: hsl(224, 30%, 27%);
-  margin-bottom: 0.7rem; /* reduced margin */
+  margin-bottom: 0.7rem;
   margin-left: 60px;
-
 }
 
 .summary-item {
@@ -108,10 +111,10 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-radius: 0.42rem; /* reduced */
-  padding: 0.5rem;      /* reduced */
-  margin-bottom: 0.5rem;/* reduced */
-  font-size: 0.65rem;   /* reduced */
+  border-radius: 0.42rem;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.65rem;
   font-weight: 700;
   width: 63%;
 }
@@ -119,19 +122,19 @@ body {
 .summary-item .label {
   display: flex;
   align-items: center;
-  gap: 0.35rem; /* reduced */
+  gap: 0.35rem;
 }
 
 .summary-item .score {
   color: hsl(224, 30%, 27%);
   font-weight: 700;
-  font-size: 0.65rem; /* reduced */
+  font-size: 0.65rem;
 }
 
 .summary-item .total {
   color: #aaa;
   font-weight: 700;
-  margin-left: 0.12rem; /* reduced */
+  margin-left: 0.12rem;
 }
 
 /* Category backgrounds and colors */
@@ -139,14 +142,17 @@ body {
   background: hsla(0, 100%, 67%, 0.07);
   color: hsl(0, 100%, 67%);
 }
+
 .summary-item.memory {
   background: hsla(39, 100%, 56%, 0.07);
   color: hsl(39, 100%, 56%);
 }
+
 .summary-item.verbal {
   background: hsla(166, 100%, 37%, 0.07);
   color: hsl(166, 100%, 37%);
 }
+
 .summary-item.visual {
   background: hsla(234, 85%, 45%, 0.07);
   color: hsl(234, 85%, 45%);
@@ -155,18 +161,17 @@ body {
 /* Continue button */
 .continue-btn {
   width: 68%;
-  margin-top: 0.5rem;    /* reduced */
-  padding: 0.5rem 0;     /* reduced */
+  margin-top: 0.5rem;
+  padding: 0.5rem 0;
   background: hsl(224, 30%, 27%);
   color: #fff;
   border: none;
   border-radius: 2rem;
-  font-size: 0.7rem;    /* reduced */
+  font-size: 0.7rem;
   font-weight: 700;
   cursor: pointer;
   transition: background 0.2s;
   margin-left: 60px;
-
 }
 
 .continue-btn:hover,
@@ -175,47 +180,232 @@ body {
   outline: none;
 }
 
-/* Main wrapper for flex layout */
+/* Main wrapper for flex layout - Desktop defaults */
 .main-wrapper {
   display: flex;
   gap: 0;
   justify-content: center;
   align-items: center;
-  width: 400px;
-  margin: 0 auto;
+  width: 520px;
+  /* Set to 400px * 1.3 scaleMultiplier from JS for desktop */
+  margin: 40px auto 0 auto;
   position: relative;
   z-index: 1;
-  background: hsl(221, 100%, 96%);
   border-radius: 2rem;
+  box-shadow: 0 8px 32px 0 rgba(61, 108, 236, 0.10);
+  /* Add shadow to wrapper for desktop card effect */
 }
 
-/* Make sure containers are above the background */
-.result-container,
-.summary-container {
-  position: relative;
-  z-index: 1;
-}
-
-/* Responsive */
+/* Responsive styles for mobile */
 @media (max-width: 700px) {
+
+  html,
+  body {
+    min-height: 100vh;
+    /* Ensure body takes full viewport height */
+    height: 100vh;
+    /* Explicitly set height to 100vh */
+    max-height: none;
+    overflow-x: hidden;
+    overflow-y: auto;
+    /* Allow scrolling if content overflows */
+    width: 100vw;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
   body {
     flex-direction: column;
     justify-content: flex-start;
     align-items: stretch;
-    min-height: 100vh;
+    background: hsl(221, 100%, 96%);
+    /* Lighter background for mobile */
+    width: 100vw;
   }
+
   .main-wrapper {
     flex-direction: column;
-    width: 100% !important;
+    width: 100vw !important;
+    /* Force full width */
+    max-width: 100vw !important;
+    min-width: 0;
     gap: 0;
-  }
-  .result-container, .summary-container {
-    width: 100% !important;
-    height: auto;
-    border-radius: 0 0 2rem 2rem;
+    border-radius: 0;
+    /* Remove border-radius on wrapper for mobile */
+    background: transparent;
+    /* No background on wrapper for mobile */
     margin: 0 !important;
-    box-shadow: none;
-    padding: 16px 8px; /* reduced for mobile */
+    /* Remove desktop margins */
+    padding: 0 !important;
+    min-height: 100vh;
+    /* Ensure wrapper takes full viewport height */
+    overflow-x: hidden;
+    overflow-y: hidden;
+    /* Prevent wrapper from scrolling, let body handle it */
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap: nowrap;
+    /* Prevent wrapping to ensure column layout */
     transform: none !important;
+    /* Crucial: explicitly remove any transform */
+    align-items: stretch;
+    /* Stretch items to fill width */
+    justify-content: flex-start;
+    /* Align items to the start */
+    height: 100vh;
+    /* Set height to 100vh to distribute space */
+    box-shadow: none;
+    /* Remove shadow on wrapper for mobile */
+  }
+
+  .result-container {
+    position: static !important;
+    /* Override desktop positioning */
+    width: 100vw !important;
+    /* Force full width */
+    margin: 0 !important;
+    /* Remove any margins */
+    padding: 24px 0 32px 0;
+    /* Adjusted padding to match mobile design */
+    border-radius: 0 0 30px 30px;
+    /* Specific border-radius for mobile top part */
+    box-shadow: none;
+    /* Remove individual box-shadow for mobile */
+    transform: none !important;
+    /* Explicitly remove any desktop transforms */
+    height: auto;
+    /* Allow height to adjust based on content */
+    flex-shrink: 0;
+    /* Prevent it from shrinking */
+    z-index: auto !important;
+    /* Reset z-index */
+  }
+
+  .result-container h1 {
+    font-size: 1.15rem;
+    /* Larger font size for mobile result heading */
+    margin-bottom: 24px;
+    /* Adjusted margin */
+  }
+
+  .result-score-circle {
+    width: 140px;
+    /* Larger circle for mobile */
+    height: 140px;
+    /* Larger circle for mobile */
+    margin-bottom: 24px;
+    /* Adjusted margin */
+  }
+
+  .result-score-circle .score {
+    font-size: 3.5rem;
+    /* Larger score font size */
+  }
+
+  .result-score-circle .of {
+    font-size: 1.1rem;
+    /* Larger "of 100" font size */
+  }
+
+  .result-container h2 {
+    font-size: 1.5rem;
+    /* Larger "Great" font size */
+    margin-top: 16px;
+    /* Adjusted margin */
+    margin-bottom: 8px;
+    /* Adjusted margin */
+  }
+
+  .result-container p {
+    font-size: 1rem;
+    /* Larger paragraph font size */
+    padding: 0 30px;
+    /* Add horizontal padding to center text */
+    max-width: none;
+    /* Remove max-width constraint */
+    line-height: 1.4;
+    /* Improve readability */
+  }
+
+  .summary-container {
+    width: 100% !important;
+    /* Force full width */
+    max-width: 100% !important;
+    border-radius: 0;
+    /* Remove border-radius for mobile */
+    margin: 0 !important;
+    /* Remove any margins (including top margin) */
+    box-shadow: none;
+    /* Remove individual box-shadow for mobile */
+    padding: 24px !important;
+    /* Symmetrical padding for all sides */
+    position: static !important;
+    /* Override desktop positioning */
+    z-index: auto !important;
+    /* Reset z-index */
+    transform: none !important;
+    /* Explicitly remove any desktop transforms */
+    flex-grow: 1;
+    /* Allow summary container to grow and fill remaining space */
+    display: flex;
+    /* Make it a flex container */
+    flex-direction: column;
+    /* Stack its content vertically */
+    align-items: stretch;
+    /* Stretch children to fill width */
+  }
+
+  .summary-container h1 {
+    font-size: 1.15rem;
+    /* Larger summary heading font size */
+    /* Adjusted margin */
+    margin-left: 0 !important;
+    /* Remove desktop specific margin */
+    height: auto;
+  }
+
+  #summary-list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    /* Spacing between summary items */
+    height: max-content !important;
+    margin-bottom: 16px;
+  }
+
+  .summary-item {
+    margin-left: 0 !important;
+    /* Remove desktop specific margin */
+    width: auto !important;
+    /* Allow natural width */
+    font-size: 1rem;
+    /* Larger font size for summary items */
+    padding: 16px 20px;
+    /* Larger padding for items */
+    margin-bottom: 0;
+    /* Remove margin-bottom as gap handles spacing */
+    height: auto !important;
+    /* Allow height to adjust based on content */
+
+  }
+
+  .summary-item .score {
+    font-size: 1rem;
+    /* Consistent score font size */
+  }
+
+  .continue-btn {
+    width: 100% !important;
+    /* Force full width */
+    margin-left: 0 !important;
+    /* Remove desktop specific margin */
+    padding: 16px 0;
+    /* Larger padding for button */
+    font-size: 1.1rem;
+    /* Larger font size for button */
+    border-radius: 2rem;
+    height: auto;
   }
 }
