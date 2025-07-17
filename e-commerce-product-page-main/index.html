@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="favicon-32x32.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>E-Commerce Product Page</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preload" href="public/fonts/KumbhSans-VariableFont_YOPQ,wght.ttf" as="font" type="font/ttf" crossorigin>
+  </head>
+  <body>
+    <header class="header">
+      <div class="header-left">
+        <img src="src/assets/images/logo.svg" alt="Sneakers website logo" class="logo" />
+        <nav class="nav">
+          <ul class="nav-list">
+            <li><a href="#" class="nav-link">Collections</a></li>
+            <li><a href="#" class="nav-link">Men</a></li>
+            <li><a href="#" class="nav-link">Women</a></li>
+            <li><a href="#" class="nav-link">About</a></li>
+            <li><a href="#" class="nav-link">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="header-right">
+        <button id="cart-btn" class="cart-btn" aria-label="Open cart">
+          <img src="src/assets/images/icon-cart.svg" alt="Cart" />
+          <span id="cart-count" class="cart-count" style="display:none;">0</span>
+        </button>
+        <img src="src/assets/images/image-avatar.png" alt="Avatar" class="avatar" />
+      </div>
+    </header>
+
+    <main class="main-content">
+      <section class="product-gallery">
+        <div class="gallery-main">
+          <img id="main-image" src="src/assets/images/image-product-1.jpg" alt="Product image" class="gallery-image" />
+        </div>
+        <ul class="gallery-thumbnails">
+          <li><img src="src/assets/images/image-product-1-thumbnail.jpg" alt="Thumbnail 1" class="thumbnail selected" data-index="0" /></li>
+          <li><img src="src/assets/images/image-product-2-thumbnail.jpg" alt="Thumbnail 2" class="thumbnail" data-index="1" /></li>
+          <li><img src="src/assets/images/image-product-3-thumbnail.jpg" alt="Thumbnail 3" class="thumbnail" data-index="2" /></li>
+          <li><img src="src/assets/images/image-product-4-thumbnail.jpg" alt="Thumbnail 4" class="thumbnail" data-index="3" /></li>
+        </ul>
+      </section>
+      <section class="product-details">
+        <p class="manufacturer text-grey-500">Sneaker Company</p>
+        <h1 class="product-title">Fall Limited Edition Sneakers</h1>
+        <p class="product-description text-grey-500">
+          These low-profile sneakers are your perfect casual wear companion. Featuring a durable rubber outer sole, they’ll withstand everything the weather can offer.
+        </p>
+        <div class="price-section">
+          <span class="final-price">$125.00</span>
+          <span class="discount">50%</span>
+          <span class="original-price line-through text-grey-500">$250.00</span>
+        </div>
+        <div class="cart-controls">
+          <div class="quantity-box">
+            <button id="decrease-qty" class="quantity-btn" aria-label="Decrease quantity">
+              <img src="src/assets/images/icon-minus.svg" alt="-" />
+            </button>
+            <span id="quantity" class="quantity">0</span>
+            <button id="increase-qty" class="quantity-btn" aria-label="Increase quantity">
+              <img src="src/assets/images/icon-plus.svg" alt="+" />
+            </button>
+          </div>
+          <button id="add-to-cart" class="button-primary">
+            <img src="src/assets/images/icon-cart.svg" alt="Cart" />
+            <span>Add to cart</span>
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <div id="cart-modal" class="cart-modal" style="display:none;">
+      <div class="cart-modal-content">
+        <span class="cart-modal-title">Cart</span>
+        <div class="cart-modal-divider"></div>
+        <div id="cart-items" class="cart-items">
+          <p class="empty-cart">Your cart is empty.</p>
+        </div>
+        <button id="checkout-btn" class="button-primary" style="display:none;">Checkout</button>
+      </div>
+    </div>
+
+    <div id="lightbox-root"></div>
+    <script src="main.js"></script>
+  </body>
+</html>
